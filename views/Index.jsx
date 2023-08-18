@@ -13,7 +13,7 @@ function Index(props) {
             return (
               <div key={i}>
                 <a href={`/pokemon/${i}`}>
-                  <h2>{pokemon[i].name}</h2>
+                  <h2>{pokemon[i].name.toUpperCase()}</h2>
                 </a>
               </div>
             );

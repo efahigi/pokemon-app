@@ -9,7 +9,7 @@ function Show(props) {
         };
   return (
     <div style={myStyle}>
-        <h1>Show The Pokemon</h1>
+        <h1>SGotta Catch 'Em All</h1>
         <h2 style={myStyle}>
             {pokemon[props.index].name}
         </h2>

@@ -11,7 +11,7 @@ app.set("view engine", "jsx")
 app.engine("jsx",require("express-react-views").createEngine())
 //All Routes (app.get)// Define the routes needed
 app.get('/', (req, res) => {
-    res.send(' Welcome to the Pokemon Express App!');
+    res.send(' Welcome to the Pokemon App!');
 })
 // pokemon route (/pokemon)
 app.get('/pokemon', (req, res) => {
