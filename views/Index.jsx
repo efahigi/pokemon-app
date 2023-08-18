@@ -1,8 +1,13 @@
 import React from 'react'
 import pokemon from '../models/pokemon';
+
 function Index(props) {
+    const myStyle = {
+        color: 'black',
+        backgroundColor: 'lightblue',
+        };
     return (
-        <div>
+        <div style={myStyle}>
             <h1><b>See All The Pokemons!</b></h1>
           {pokemon.map((p, i) => {
             return (
