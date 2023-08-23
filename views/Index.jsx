@@ -6,11 +6,12 @@ function Index(props) {
         color: 'black',
         backgroundColor: 'lightblue',
         display: 'flex',
+        border: 'solid lightgray',
         // alignItems:"center"
         };
         const d = {
-        //  marginLeft: "150px",
-          fontSize: "30px",
+          border: 'solid lightgray',
+          fontSize: "20px",
           backgroundColor: 'lightblue',
           textAlign:"center"
           };
@@ -39,6 +40,7 @@ function Index(props) {
     return (
         <div style={d} >
             <h3 ><b>See All The Pokemons!</b></h3>
+            <a href="/pokemon/New">Create New Pokemon</a>
           {pokemon.map((pokemon,i) => {
             return (
              
@@ -46,7 +48,7 @@ function Index(props) {
                 <div style={a}>
                 <a href={`/pokemon/${pokemon._id}`}>
                   <h2>{pokemon.name}</h2>
-                  {/* const name = file.originalname.toLowerCase().split(' ').join('_'); */}
+                  {/*  pokemon.name.toUpperCase().split(' ').join('_'); */}
                  
                 </a>
                 </div>
@@ -54,18 +56,14 @@ function Index(props) {
                 <a href={`/pokemon/${pokemon._id}/edit`}>Edit </a>
                </div>
                <div style={c}>
-                <form action={`/pokemon/${pokemon._id}?_method=delete`} method="POST"  >
-                <input type="submit" value="X"/>
-                </form>
+                  <form action={`/pokemon/${pokemon._id}?_method=delete`} method="POST"  >
+                  <input type="submit" value="Delete"/>
+                  </form>
                 </div>
               
               </div>
             );
-            
           })}
-            <div style={d}>
-            <a href="/pokemon/New">Create New Pokemon</a>
-            </div>
         </div>
       );
 }

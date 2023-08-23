@@ -7,6 +7,7 @@ function Show(props) {
     const myStyle = {
         color: 'black',
         backgroundColor: 'lightblue',
+        border: 'solid black',
         };
         const d = {
           //  marginLeft: "150px",
@@ -39,7 +40,7 @@ function Show(props) {
             {pokemon.name}
         </h2>
         <img style={b} src={pokemon.img +".jpg"} alt="" />
-        <h3 style={c}> Description: {pokemon.description}</h3>
+        <h3 style={c}> {pokemon.description}</h3>
     </div>
   )
 }

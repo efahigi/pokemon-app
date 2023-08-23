@@ -9,7 +9,7 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const Pokemon = require("./models/pokemon.js");
 const methodOverride = require('method-override');
-
+const pokemonData = require("./utilities/pokemonData.js");
 
 //Middleware 
 app.set("view engine", "jsx")
@@ -20,6 +20,7 @@ app.use((req, res, next) => {
     console.log("I run for all routes");
     next();
     });
+
 app.use(methodOverride('_method'));
 
 mongoose.connect(process.env.MONGO_URI, {
@@ -31,15 +32,21 @@ mongoose.connect(process.env.MONGO_URI, {
     console.log("connected to mongo");
     });
 
- // Define all routes needed
+    //our seed routes
+    app.get('/pokemon/seed', async(req, res) => {
+      //deleting all current data(optional)
+      //await Pokemon.deleteMany({});
+      //creating a list of pokemon into our database
+      await Pokemon.create(pokemonData);
+      res.redirect('/pokemon')
+  });
+
+
+ // Define all pokemon routes  needed
 app.get('/', (req, res) => {
     res.send(' Welcome to the Pokemon App!');
 })
-// pokemon route (/pokemon)
-// app.get('/pokemon', (req, res) => {
-//     res.render('Index');
-// })
-// // Pokemon 
+// (/pokemon)
 app.get("/pokemon", (req, res) => {
     Pokemon.find({}).then((allPokemon) => {
       res.render("Index", {
@@ -50,7 +57,7 @@ app.get("/pokemon", (req, res) => {
 // -------{POST}
 app.post("/pokemon", async (req, res) => {
     const newPokemon = await Pokemon.create(req.body);
-    // await res.send(newCat);
+   //await res.send(new);
     res.redirect("/pokemon");
     });
     
@@ -80,22 +87,13 @@ app.post("/pokemon", async (req, res) => {
           })
         })
     
-    // -------------{ Show => Each Cat}
+    // -------------{ Show => Each Pokemon}
     app.get("/pokemon/:id", async (req, res) => {
         const eachPokemon = await Pokemon.findById(req.params.id)
         await res.render("Show",{
             pokemon: eachPokemon
         })
       });
-
-
-// Define the routes needed
-// app.get('/pokemon/:id', (req, res) => {
-//     res.render('Show', {index:req.params.id}); //passing id as props
-// })
-
-
-
 
 // Tell express app to listen to port(3000)
 app.listen(PORT, ()=>{
