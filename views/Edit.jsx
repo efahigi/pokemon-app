@@ -8,7 +8,7 @@ function Edit(props) {
         Name:{" "}
         <input type="text" name="name" defaultValue={pokemon.name} />
         <br />
-      img:{" "}
+      Image URL:{" "}
         <input type="src" name="img" defaultValue={ pokemon.img} />
         <br />
   
